@@ -23,11 +23,15 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/tweets', [TweetsController::class, 'store']);
-    Route::get('/tweets', [TweetsController::class, 'index']);
+    Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
 
 });
 
-
+Route::get('/home', function () {
+    return view('home', [
+        'tweets' => auth()->user()->timeline()
+    ]);
+});
 
 
 Route::get('/dashboard', function () {
