@@ -27,11 +27,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/home', function () {
-    return view('home', [
-        'tweets' => auth()->user()->timeline()
-    ]);
-});
+
 
 
 Route::get('/dashboard', function () {
