@@ -1,9 +1,12 @@
 <?php
 
+// DB::listen(function ($query) { var_dump($query->sql, $query->bindings, $query->time); });
+
 use Illuminate\Support\Facades\Route;
 use App\Models\Tweet;
 use App\Models\User;
 use App\Http\Controllers\TweetsController;
+use App\Http\Controllers\ProfilesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::get('/profiles/{user}', [ProfilesController::class, 'show'])->name('profile');
 
 
 

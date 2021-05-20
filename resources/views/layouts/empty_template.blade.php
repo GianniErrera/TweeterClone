@@ -21,16 +21,15 @@
             <section class="px-8 py-4 mb-6">
                 <header class="container mx-auto">
                     <h1>
-                    <img
-                        src="images/logo.svg"
-                        alt="logo"
+                        <img
+                            src="/images/logo.svg"
+                            alt="logo"
                         >
-
                     </h1>
                 </header>
             </section>
-            <section class="px-8">
 
+            <section class="px-8">
                 <main class="container mx-auto">
                     <div class="lg:flex lg:justify-between">
                         <div class="lg:w-32">

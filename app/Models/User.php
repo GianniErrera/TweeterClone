@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function follow(User $user) {
 
-        return $this->followers()->save($user);
+        return $this->followed()->save($user);
     }
 
     public function followed() {
@@ -71,4 +71,13 @@ class User extends Authenticatable
         return Tweet::whereIn('user_id', $followedIds)->latest()->get();
 
     }
+
+
+    public function getRouteKeyName() {
+
+
+        return 'name';
+    }
+
+
 }

@@ -3,7 +3,7 @@
     <li>
         <a
             class="font-bold text-lg mb-4 block"
-            href="something"
+            href="{{ route('home')}}"
         >
             Home
         </a>
@@ -58,7 +58,7 @@
     <li>
         <a
             class="font-bold text-lg mb-4 block"
-            href="/profile"
+             href="{{ route('profile', auth()->user()) }}"
         >
             Profile
         </a>
@@ -74,15 +74,6 @@
     </li>
 
     @auth
-        <li>
-            <a
-                class="font-bold text-lg mb-4 block"
-                href="{{ "something_else" }}"
-            >
-                Profile
-            </a>
-        </li>
-
         <li>
             <form method="POST" action="/logout">
                 @csrf
