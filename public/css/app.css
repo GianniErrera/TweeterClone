@@ -10496,6 +10496,10 @@ select {
   border-radius: 0.75rem;
 }
 
+.rounded-xxl {
+  border-radius: 1.25rem;
+}
+
 .rounded-2xl {
   border-radius: 1rem;
 }

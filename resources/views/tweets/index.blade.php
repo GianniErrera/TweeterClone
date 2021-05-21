@@ -1,11 +1,11 @@
-@extends('layouts.empty_template')
+<x-app>
 
+    <div>
 
-@section('content')
+        @include('_publish-tweet-panel')
 
-    @include('_publish-tweet-panel')
+        @include('_timeline')
 
-    @include('_timeline')
+    </div>
 
-@endsection
-
+</x-app>
