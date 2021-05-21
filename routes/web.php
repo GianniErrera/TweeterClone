@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/profiles/{user}', [ProfilesController::class, 'show'])->name('profile');
+Route::get('/profiles/{user:name}', [ProfilesController::class, 'show'])->name('profile');
 
 
 
