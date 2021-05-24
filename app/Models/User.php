@@ -52,7 +52,8 @@ class User extends Authenticatable
 
     public function tweets() {
 
-        return $this->hasMany(Tweet::class);
+        return $this->hasMany(Tweet::class)
+            ->latest();
     }
 
     public function follow(User $user) {
@@ -62,18 +63,23 @@ class User extends Authenticatable
 
     public function unfollow(User $user) {
 
-        return $this->followed()->detach($user);
+        return $this
+            ->followed()
+            ->detach($user);
     }
 
     public function following(User $user) {
 
-        return $this->followed()->where('following_user_id', $user->id)->exists();
+        return $this->followed()
+            ->where('following_user_id', $user->id)
+            ->exists();
 
     }
 
     public function followed() {
 
-        return $this->belongsToMany(User::class, 'followed_users', 'user_id', 'following_user_id');
+        return $this
+            ->belongsToMany(User::class, 'followed_users', 'user_id', 'following_user_id');
     }
 
     public function timeline() {
@@ -81,13 +87,14 @@ class User extends Authenticatable
         $followedIds = $this->followed->pluck('id');
         $followedIds->push($this->id);
 
-        return Tweet::whereIn('user_id', $followedIds)->latest()->get();
+        return Tweet::whereIn('user_id', $followedIds)
+            ->latest()
+            ->get();
 
     }
 
 
     public function getRouteKeyName() {
-
 
         return 'name';
     }

@@ -24,6 +24,6 @@ class TweetsController extends Controller
         $tweet->body = request('body');
         $tweet->save();
 
-        return redirect('tweets');
+        return redirect()->route('home');
     }
 }
