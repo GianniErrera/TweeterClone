@@ -15,7 +15,11 @@
                 </div>
                 <div class="flex">
                     <a class="rounded-full shadow py-2 px-4 border border-gray-300 text-black text-xs mr-2">Edit profile</a>
-                    <form method="POST" action=""><button class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">Follow</button>
+                    <form method="POST" action="/profiles/{{ $user->name }}/follow">
+                        @csrf
+                        <button class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">
+                            {{ auth()->user()->following($user) ? 'Unfollow' : 'Follow' }}</button>
+                    </form>
                 </div>
             </div>
             <div>
