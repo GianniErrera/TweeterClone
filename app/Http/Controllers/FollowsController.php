@@ -8,15 +8,18 @@ use App\Models\User;
 class FollowsController extends Controller
 {
     public function store(User $user) {
-        if(!auth()->user()->following($user)) {
         auth()
             ->user()
             ->follow($user);
-        } else {
-            auth()
+
+        return back();
+
+    }
+
+    public function destroy(User $user) {
+        auth()
             ->user()
             ->unfollow($user);
-        }
 
         return back();
 

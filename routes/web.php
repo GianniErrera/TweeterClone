@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
 
     Route::post('/profiles/{user:name}/follow', [FollowsController::class, 'store']);
+    Route::post('/profiles/{user:name}/unfollow', [FollowsController::class, 'destroy']);
 
 });
 
