@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/profiles/{user:name}/follow', [FollowsController::class, 'store']);
     Route::post('/profiles/{user:name}/unfollow', [FollowsController::class, 'destroy']);
+    Route::get('/profiles/{user:name}/edit', [ProfilesController::class, 'edit']);
 
 });
 

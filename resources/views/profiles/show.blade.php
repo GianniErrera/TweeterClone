@@ -24,7 +24,11 @@
                 </div>
                 <div class="flex">
                     @if(current_user()->is($user))
-                        <a class="rounded-full shadow py-2 px-4 border border-gray-300 text-black text-xs mr-2">Edit profile</a>
+                        <a href="{{ $user->path('edit') }}"
+                        class="rounded-full shadow py-2 px-4 border border-gray-300 text-black text-xs mr-2"
+                        >
+                            Edit profile
+                        </a>
                     @endif
                     <x-follow-button :user="$user"></x-follow-button>
                 </div>
