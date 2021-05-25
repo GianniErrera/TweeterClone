@@ -11,8 +11,8 @@
                 <img
                     src="{{ $user->avatar }}"
                     alt=""
-                    class="rounded-full mr-2 absolute bottom-0"
-                    style="left: 50%; transform: translate(-50%, 50%)"
+                    class="rounded-full mr-2 absolute bottom-0 transform -translate-x-2/4 translate-y-2/4 "
+                    style="left: 50%"
                     width="150px"
                 >
             </div>
@@ -23,7 +23,9 @@
                     <p class="text-sm"> Joined {{ $user->created_at->diffForHumans() }}</p>
                 </div>
                 <div class="flex">
-                    <a class="rounded-full shadow py-2 px-4 border border-gray-300 text-black text-xs mr-2">Edit profile</a>
+                    @if(current_user()->is($user))
+                        <a class="rounded-full shadow py-2 px-4 border border-gray-300 text-black text-xs mr-2">Edit profile</a>
+                    @endif
                     <x-follow-button :user="$user"></x-follow-button>
                 </div>
             </div>

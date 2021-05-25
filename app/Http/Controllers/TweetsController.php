@@ -13,17 +13,14 @@ class TweetsController extends Controller
         return view('tweets.index', [
             'tweets' => auth()->user()->timeline()
         ]);
-
     }
 
     public function store() {
-
         request()->validate(['body' => 'required|max:255']);
         $tweet = new Tweet();
         $tweet->user_id = auth()->id();
         $tweet->body = request('body');
         $tweet->save();
-
         return redirect()->route('home');
     }
 }

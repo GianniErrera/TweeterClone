@@ -11,17 +11,13 @@ class FollowsController extends Controller
         auth()
             ->user()
             ->follow($user);
-
         return back();
-
     }
 
     public function destroy(User $user) {
         auth()
             ->user()
             ->unfollow($user);
-
         return back();
-
     }
 }

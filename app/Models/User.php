@@ -45,35 +45,28 @@ class User extends Authenticatable
     ];
 
     public function getAvatarAttribute() {
-
         return "https://i.pravatar.cc/200?u=" . $this->email;
-
     }
 
     public function tweets() {
-
         return $this->hasMany(Tweet::class)
             ->latest();
     }
 
     public function follow(User $user) {
-
         return $this->followed()->save($user);
     }
 
     public function unfollow(User $user) {
-
         return $this
             ->followed()
             ->detach($user);
     }
 
     public function following(User $user) {
-
         return $this->followed()
             ->where('following_user_id', $user->id)
             ->exists();
-
     }
 
     public function followed() {
@@ -93,9 +86,13 @@ class User extends Authenticatable
 
     }
 
+    public function path($append = "") {
+        $path = route('profile', $this->name);
+        return $append ? "{$path}/$append" : $path;
+    }
+
 
     public function getRouteKeyName() {
-
         return 'name';
     }
 
