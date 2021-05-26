@@ -23,12 +23,12 @@ trait Followable {
             ->exists();
     }
 
-    public function follows() {
-        return $this->belongsToMany(
-            User::class,
-            'follows',
+    public function followed() {
+        return $this
+            ->belongsToMany(User::class,
+            'followed_users',
             'user_id',
-            'following_user_id'
-        );
+            'following_user_id');
     }
+
 }

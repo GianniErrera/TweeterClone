@@ -29,13 +29,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/tweets', [TweetsController::class, 'store']);
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
 
-    Route::post('/profiles/{user:name}/follow', [FollowsController::class, 'store']);
-    Route::post('/profiles/{user:name}/unfollow', [FollowsController::class, 'destroy']);
-    Route::get('/profiles/{user:name}/edit', [ProfilesController::class, 'edit']);
+    Route::post('/profiles/{user:username}/follow', [FollowsController::class, 'store']);
+    Route::post('/profiles/{user:username}/unfollow', [FollowsController::class, 'destroy']);
+    Route::patch(
+        '/profiles/{user:username}',
+         [ProfilesController::class, 'update']
+    )->middleware('can:edit,user');
+    Route::get(
+        '/profiles/{user:username}/edit',
+         [ProfilesController::class, 'edit']
+    )->middleware('can:edit,user');
 
 });
 
-Route::get('/profiles/{user:name}', [ProfilesController::class, 'show'])->name('profile');
+Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profile');
 
 
 
