@@ -11,7 +11,7 @@
                 <img
                     src="{{ $user->avatar }}"
                     alt=""
-                    class="rounded-full mr-2 absolute bottom-0 transform -translate-x-2/4 translate-y-2/4 "
+                    class="rounded-full mr-2 absolute bottom-0 transform -translate-x-2/4 translate-y-2/4"
                     style="left: 50%"
                     width="150px"
                 >
