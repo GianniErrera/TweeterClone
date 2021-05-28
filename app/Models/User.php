@@ -47,7 +47,7 @@ class User extends Authenticatable
     ];
 
     public function getAvatarAttribute($value) {
-        return asset('storage/' . $value);
+        return asset($value ? 'storage/' . $value : 'images/default-avatar.jpeg');
     }
 
     public function tweets() {
@@ -60,7 +60,7 @@ class User extends Authenticatable
         $followedIds->push($this->id);
         return Tweet::whereIn('user_id', $followedIds)
             ->latest()
-            ->get();
+            ->paginate(10);
     }
 
     public function path($append = "") {

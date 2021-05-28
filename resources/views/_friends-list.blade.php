@@ -1,8 +1,10 @@
-<h3 class="font-bold text-xl mb-4">Followers</h3>
+<div class="bg-gray-200 border border-gray-400 rounded-lg py-4 px-6">
 
-<ul>
-    @foreach(auth()->user()->followed as $user)
-            <li class="mb-4">
+    <h3 class="font-bold text-xl mb-4">Followers</h3>
+
+    <ul>
+        @forelse(auth()->user()->followed as $user)
+            <li class="{{ $loop->last ? '' : 'mb-4' }}">
                 <a href="{{ $user->path() }}" class="flex items-center text-sm">
                     <img
                         src="{{ $user->avatar }}"
@@ -16,5 +18,9 @@
 
                 </a>
             </li>
-    @endforeach
-</ul>
+        @empty
+            <li>No friends yet</li>
+        @endforelse
+    </ul>
+</div>
+

@@ -9,7 +9,10 @@ use Illuminate\Validation\Rule;
 class ProfilesController extends Controller
 {
     public function show(User $user) {
-         return view('profiles.show', compact('user'));
+         return view('profiles.show', [
+             'user' => $user,
+             'tweets' => $user->tweets()->paginate(10)
+         ]);
     }
 
     public function edit(User $user) {
@@ -27,8 +30,12 @@ class ProfilesController extends Controller
                 'string', 'required', 'email', 'max:255',
                 Rule::unique('users', 'email')->ignore($user->id)
             ],
+            'password' => 'string|min:8|max:255|confirmed',
             'avatar' => 'file'
         ]);
+        if(request('password')) {
+            $attributes['password'] = bcrypt(request('password'));
+        }
         if(request('avatar')) {
         $attributes['avatar'] = request('avatar')->store('avatars');
         }
