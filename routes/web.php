@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     )->middleware('can:edit,user');
 
 });
-
+Route::get('/test', [TweetsController::class, 'test']);
 Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profile');
 
 Route::get('/explore', ExploreController::class);
