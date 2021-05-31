@@ -5,7 +5,9 @@ namespace App\Http\Traits;
 use App\Models\Tweet;
 use App\Models\Like;
 
-public function like($liked = true) {
+trait Likeable {
+
+    public function like($liked = true) {
     //dd($user->id);
     $this->likes()->updateOrCreate([
         'user_id' => auth()->id()
@@ -15,17 +17,18 @@ public function like($liked = true) {
     ]);
 }
 
-public function dislike($disliked = true) {
-    //dd($user->id);
-    $this->likes()->updateOrCreate([
-        'user_id' => auth()->id()
-    ], [
-        'liked' => false,
-        'disliked' => $disliked
-    ]);
-}
+    public function dislike($disliked = true) {
+        //dd($user->id);
+        $this->likes()->updateOrCreate([
+            'user_id' => auth()->id()
+        ], [
+            'liked' => false,
+            'disliked' => $disliked
+        ]);
+    }
 
-public function likes() {
+    public function likes() {
 
-    return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class);
+    }
 }
