@@ -18,19 +18,10 @@
         </h5>
         <p class="text-sm mb-3"> {{ $tweet->body }} </p>
         <div class="flex">
-            @php
-                if ($tweet->isLikedBy(current_user())) {
-                    $isLikedChecked = true;
-                } else {
-                    $isLikedChecked = 0;
-                }
-                if ($tweet->isDislikedBy(current_user())) {
-                    $isDislikedChecked = true;
-                } else {
-                    $isDislikedChecked = 0;
-                }
-            @endphp
-            <form method="POST" action="/tweets/{{ $tweet->id }}/like/{{ $isLikedChecked }}">
+            <form method="POST" action= {{ route('like.tweet',
+                ['tweet' => $tweet,
+                'liked' =>  $tweet->isLikedBy(current_user())]
+                ) }}>
                 @csrf
                 <div class="flex items-center mt-1 mr-4">
                     <svg viewBox="0 0 20 20" class="{{ $tweet->isLikedBy(current_user()) ? 'text-blue-500' : 'text-gray-500' }} mr-1 w-3">
@@ -44,7 +35,10 @@
                     </button>
                 </div>
             </form>
-            <form method="POST" action="/tweets/{{ $tweet->id }}/dislike/{{  $isDislikedChecked }}">
+            <form method="POST" action= {{ route('dislike.tweet',
+                ['tweet' => $tweet,
+                'disliked' => $tweet->isDislikedBy(current_user())]
+                ) }}>
                 @csrf
                 <div class="flex items-center mt-1">
                     <svg viewBox="0 0 20 20" class="{{ $tweet->isDislikedBy(current_user()) ? 'text-blue-500' : 'text-gray-500' }} mr-1 w-3">

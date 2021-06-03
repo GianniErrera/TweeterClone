@@ -42,8 +42,8 @@ Route::middleware('auth')->group(function () {
          [ProfilesController::class, 'edit']
     )->middleware('can:edit,user');
 
-    Route::post('/tweets/{tweet}/like/{liked}', [LikesController::class, 'like']);
-    Route::post('/tweets/{tweet}/dislike/{liked}', [LikesController::class, 'dislike']);
+    Route::post('/tweets/{tweet}/like/{liked?}', [LikesController::class, 'like'])->name('like.tweet');
+    Route::post('/tweets/{tweet}/dislike/{disliked?}', [LikesController::class, 'dislike'])->name('dislike.tweet');
 
 });
 Route::get('/test', [TweetsController::class, 'test']);
