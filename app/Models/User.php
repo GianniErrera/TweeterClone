@@ -52,6 +52,7 @@ class User extends Authenticatable
 
     public function tweets() {
         return $this->hasMany(Tweet::class)
+            ->withLikes()
             ->latest();
     }
 
@@ -59,6 +60,7 @@ class User extends Authenticatable
         $followedIds = $this->followed->pluck('id');
         $followedIds->push($this->id);
         return Tweet::whereIn('user_id', $followedIds)
+            ->withLikes()
             ->latest()
             ->paginate(10);
     }
@@ -71,6 +73,10 @@ class User extends Authenticatable
 
     public function getRouteKeyName() {
         return 'name';
+    }
+
+    public function likes() {
+        return $this->hasMany(Like::class);
     }
 
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\TweetsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\LikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
         '/profiles/{user:username}/edit',
          [ProfilesController::class, 'edit']
     )->middleware('can:edit,user');
+
+    Route::post('/tweets/{tweet}/like/{liked}', [LikesController::class, 'like']);
+    Route::post('/tweets/{tweet}/dislike/{liked}', [LikesController::class, 'dislike']);
 
 });
 Route::get('/test', [TweetsController::class, 'test']);
