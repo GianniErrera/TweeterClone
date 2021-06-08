@@ -22,9 +22,11 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'name',
+        'bio',
         'email',
         'password',
-        'avatar'
+        'avatar',
+        'banner'
     ];
 
     /**
@@ -47,7 +49,11 @@ class User extends Authenticatable
     ];
 
     public function getAvatarAttribute($value) {
-        return asset($value ? 'storage/' . $value : 'images/default-avatar.jpeg');
+        return asset($value ? 'storage/' . $value : '/images/default-avatar.jpeg');
+    }
+
+    public function getBannerAttribute($value) {
+        return asset($value ? 'storage/' . $value : '/images/default-profile-banner.jpg');
     }
 
     public function tweets() {

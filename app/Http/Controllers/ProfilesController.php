@@ -26,19 +26,29 @@ class ProfilesController extends Controller
                 Rule::unique('users', 'username')->ignore($user->id)
             ],
             'name' => 'string|required|max:255',
+            'bio' => 'nullable|string|max:160',
             'email' => [
                 'string', 'required', 'email', 'max:255',
                 Rule::unique('users', 'email')->ignore($user->id)
             ],
-            'password' => 'string|min:8|max:255|confirmed',
-            'avatar' => 'file'
+            'password' => 'nullable|string|min:8|max:255|confirmed',
+            'avatar' => 'nullable|file',
+            'banner' => 'nullable|file'
         ]);
+        if(request('bio')) {
+            $attributes['bio'] = request('bio');
+        }
         if(request('password')) {
             $attributes['password'] = bcrypt(request('password'));
+        } else {
+            $attributes['password'] = $user->password;
         }
         if(request('avatar')) {
         $attributes['avatar'] = request('avatar')->store('avatars');
         }
+        if(request('banner')) {
+            $attributes['banner'] = request('banner')->store('banners');
+            }
         $user->update($attributes);
         return redirect($user->path());
     }

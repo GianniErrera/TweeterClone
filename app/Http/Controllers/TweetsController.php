@@ -23,6 +23,11 @@ class TweetsController extends Controller
         $tweet = new Tweet();
         $tweet->user_id = auth()->id();
         $tweet->body = request('body');
+        if (request('attached_image')) {
+            $attached_image = request('attached_image')->store('tweets_images');
+            $tweet->attached_image = $attached_image;
+
+        }
         $tweet->save();
         return redirect()->route('home');
     }
