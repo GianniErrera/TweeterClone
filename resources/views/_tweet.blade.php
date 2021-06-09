@@ -11,7 +11,7 @@
         </a>
     </div>
     <div>
-        <div class="flex flex-row flex-wrap content-between">
+        <div class="flex flex-row content-between">
             <div>
                 <h5 class="font-bold mb-4">
                     <a href="{{ $tweet->user->path() }}">
@@ -19,6 +19,24 @@
                     </a>
                 </h5>
             </div>
+            {{-- <div>
+                <form method="POST" action= {{ route('dislike.tweet',
+                    ['tweet' => $tweet,
+                    'disliked' => $tweet->isDislikedBy(current_user())]
+                    ) }}>
+                    @csrf
+                    <div class="flex items-center mt-1">
+                        <button type="submit">
+                            <div class= "place-self-end">
+                                <img src="/images/trash.svg" /
+                                width="15"
+                                height="15"
+                                ">
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div> --}}
             {{-- <div class= "place-self-end">
                     <img src="/images/trash.svg" /
                     width="15"
