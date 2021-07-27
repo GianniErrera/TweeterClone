@@ -26,7 +26,6 @@ class TweetsController extends Controller
         if (request('attached_image')) {
             $attached_image = request('attached_image')->store('tweets_images');
             $tweet->attached_image = $attached_image;
-
         }
         $tweet->save();
         return redirect()->route('home')->with('status', 'Tweet published!');

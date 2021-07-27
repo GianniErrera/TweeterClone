@@ -3,6 +3,9 @@
 // DB::listen(function ($query) { var_dump($query->sql, $query->bindings, $query->time); });
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Component;
+use App\Http\Livewire\ShowProfile as ShowProfile;
+use App\Http\Livewire;
 use App\Models\Tweet;
 use App\Models\User;
 use App\Http\Controllers\TweetsController;
@@ -29,7 +32,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/tweets', [TweetsController::class, 'store']);
-    Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
+    Route::get('/tweets', [TweetsController::class, 'index'])->name('home'); //maybe this should be outside of auth middleware to be accessed by everyone
 
     Route::post('/profiles/{user:username}/follow', [FollowsController::class, 'store']);
     Route::post('/profiles/{user:username}/unfollow', [FollowsController::class, 'destroy']);

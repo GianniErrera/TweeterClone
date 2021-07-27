@@ -15,7 +15,7 @@ class AddDefaultValuesToLikeAndDislike extends Migration
     {
         Schema::table('likes', function (Blueprint $table) {
             $table->boolean('liked')->default(false)->change();
-            $table->boolean('disliked')->default(false)->change();
+            $table->boolean('disliked')->default(false)->change();            
         });
     }
 

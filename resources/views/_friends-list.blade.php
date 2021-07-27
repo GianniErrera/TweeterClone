@@ -1,6 +1,6 @@
 <div class="bg-gray-200 border border-gray-400 rounded-lg py-4 px-6">
 
-    <h3 class="font-bold text-xl mb-4">Followers</h3>
+    <h3 class="font-bold text-xl mb-4">Followed</h3>
 
     <ul>
         @forelse(auth()->user()->followed as $user)
